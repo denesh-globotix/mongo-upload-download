@@ -8,9 +8,6 @@ class PathUploader():
         # Call the MongoDB function
         self.db = self.mongo_conn()
 
-        # Define a ROS Service
-        rospy.Service('upload_path_to_MongoDB', LoadGoal, self.uploadPath)
-    
     def uploadPath(self, req):
         print(req.path)
         return []
@@ -21,7 +18,6 @@ class PathUploader():
         "text": "My first blog post!",
         "tags": ["mongodb", "python", "pymongo"]}
 
-        # Insert the above post into the zones document
         collection = self.db["books"]
         collection.insert_one((post))
 
@@ -42,7 +38,6 @@ class PathUploader():
         collection.delete_one({ "author": "Mike" })
         return
 
-    # Returns a MongoDB connection object to the database: zones
     def mongo_conn(self):
         try:
             conn = MongoClient(host='127.0.0.1', port=27017)
